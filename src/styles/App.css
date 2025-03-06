@@ -1,42 +1,54 @@
+.App {
+
+}
+
+/***** NAV BAR *****/
+nav{
+  overflow: hidden;
+  background-color: white;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+  left: 0; /* start at left */
+  padding: 10px 40px;
+  z-index: 1000;
+}
+.navContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+}
+#leftNav a{
+  padding: 10px;
+}
+#rightNav a{
+  padding: 5px;
+}
+
+.navbar-brand{
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+
+/*****  INTRO SECTION  *****/
+.intro {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  margin: 0 75px 0 75px;
+  padding-top: 200px;
+}
+
+/* CODE BELOW WAS DEFAULT CSS
 *{
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+*/

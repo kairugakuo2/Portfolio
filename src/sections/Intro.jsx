@@ -1,8 +1,9 @@
+import React from "react";
 import { TypeAnimation } from 'react-type-animation'
 const Intro = () => {
 
     return (
-        <section id="intro" style={{ marginLeft:75, marginRight:75, padding:0, textAlign:"center" }}>
+        <div className="intro">
             <h1 className="myName" style={{margin: 0}}>
                 <TypeAnimation sequence={[
                     "Hi, I'm Gakuo 👋"]}
@@ -19,7 +20,7 @@ const Intro = () => {
                 Say Hello!
             </button>
 
-        </section>
+        </div>
     );
 };
 
