@@ -14,7 +14,7 @@ const Navbar = () => {
 
                 <div id="rightNav">
                     <a target="_blank" href="mailto:kairugakuo2@gmail.com">Email</a>
-                    <a target="_blank" href="https://github.com/kairugakuo2">Github</a>
+                    <a target="_blank" href="https://github.com/kairugakuo2">GitHub</a>
                     <a target="_blank" href="https://www.linkedin.com/in/gakuo/">Linkedin</a>
                 </div>
             </div>

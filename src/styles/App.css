@@ -1,5 +1,10 @@
+* {
+  border: transparent solid 1px;
+}
 .App {
-
+  max-width: 100%;
+  height: auto;
+  text-align: center;
 }
 
 /***** NAV BAR *****/
@@ -33,15 +38,56 @@ nav{
   font-size: 1.2rem;
 }
 
+/**** CONTENT SECTION  ****/
+.content  div {
+  padding: 25px 0;
+}
+.content > div {
+  margin: 0 17vw;
+}
+.content .intro{
+  padding-top: 200px;
+}
 
 /*****  INTRO SECTION  *****/
 .intro {
   display: flex;
   flex-direction: column;
-
-  align-items: center;
-  margin: 0 75px 0 75px;
   padding-top: 200px;
+  align-items: center;
+
+}
+.intro h2 {
+  font-size: 2.5rem;
+  margin: 5px 10px 10px 10px;
+}
+.intro p {
+  font-size: 1.25rem;
+  margin: 10px 10vw;
+}
+
+/*****  ABOUT SECTION  *****/
+.about {
+  text-align: left;
+}
+
+.aboutMeInfo{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+.aboutText ul {
+  font-size: 1.15rem;
+  max-height: 90px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.aboutImage img {
+  height: auto;
+  max-width: 400px;
+  border-radius: 5%;
+
 }
 
 /* CODE BELOW WAS DEFAULT CSS
