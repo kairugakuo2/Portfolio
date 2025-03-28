@@ -141,21 +141,86 @@ nav{
 }
 
  /* ========== EXPERIENCE SECTION ========== */
-.experience {
-  text-align: left;
-}
-.experience-container {
-  display: flex;
-  flex-direction: row;
-}
+ @media (max-width: 768px) {
+   /* Updated nav styles */
+   .hamburger {
+     display: block;
+     position: absolute;
+     right: 20px;
+     top: 10px;
+   }
 
+   .navLinks {
+     display: none;
+     flex-direction: column;
+     width: 100%;
+     gap: 10px;
+     margin-top: 10px;
+   }
 
+   .navLinks.open {
+     display: flex;
+   }
 
-/* CODE BELOW WAS DEFAULT CSS
-*{
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-*/
+   #leftNav,
+   #rightNav {
+     flex-direction: column;
+     gap: 8px;
+     align-items: flex-start;
+   }
+
+   #leftNav a,
+   #rightNav a {
+     padding: 5px 10px;
+     font-size: 1rem;
+   }
+
+   .navContainer {
+     flex-direction: column;
+     align-items: flex-start;
+     position: relative;
+   }
+
+   /* Intro responsiveness */
+   .intro h1 {
+     font-size: 2rem;
+   }
+
+   .intro h2 {
+     font-size: 1.5rem;
+   }
+
+   .intro p {
+     font-size: 1rem;
+     margin: 10px;
+   }
+
+   /* About responsiveness */
+   .aboutMeInfo {
+     flex-direction: column;
+     align-items: center;
+     text-align: center;
+     gap: 1rem;
+   }
+
+   .aboutText ul {
+     flex-wrap: wrap;
+     max-height: none;
+     margin-left: 0;
+   }
+
+   .aboutImage img {
+     max-width: 80%;
+     margin-top: 1rem;
+   }
+
+   /* Experience responsiveness */
+   .experience-container {
+     flex-direction: column;
+     gap: 1rem;
+   }
+
+   .experience-tabs {
+     align-self: center;
+   }
+ }
