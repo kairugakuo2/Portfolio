@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './styles/App.css'
 import NavBar from './components/NavBar';
 import FadeInSection from './components/FadeInSection';
@@ -9,6 +9,13 @@ import Experience from "./sections/Experience.jsx";
 
 
 const App = () => {
+    useEffect(() => {
+        //reset the scroll position on load
+        setTimeout(() => {
+            window.scrollTo(0, 0);
+
+        }, 0);
+    }, []);
     return (
         <div className="App" >
             <NavBar/>

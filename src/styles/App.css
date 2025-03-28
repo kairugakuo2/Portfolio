@@ -17,7 +17,6 @@
  /* ========== NAV BAR ========== */
 nav{
   overflow: hidden;
-  background-color: white;
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%; /* Full width */
@@ -62,7 +61,7 @@ nav{
 
  /* ========== INTRO SECTION ========== */
  .intro {
-   min-height: 100vh;
+   height: calc(100vh - 80px);
    display: flex;
    flex-direction: column;
    justify-content: center; /* vertical center */
