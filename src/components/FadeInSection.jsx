@@ -1,6 +1,6 @@
 import React from "react";
-import FadeIn from "react-fade-in";
 import { useInView } from "react-intersection-observer";
+import "../styles/FadeInSection.css"; // styles
 
 // ref is assigned to section to observe
 // inView is true when element is visible
@@ -8,16 +8,17 @@ import { useInView } from "react-intersection-observer";
 const FadeInSection = ({children}) => {
     const { ref, inView} = useInView({
         triggerOnce: true,
-        threshold: 0.1, // trigger when 50% of element is visible
+        threshold: 0.1, // trigger when 10% of element is visible
     });
 
+    let className = "fade-in-section";
+    if (inView) {
+        className += " is-visible";
+    }
+
     return (
-        <div ref={ref}>
-            {inView && (
-                <FadeIn transitionDuration={1900}>
-                    {children}
-                </FadeIn>
-            )}
+        <div ref={ref} className={className} >
+            {children}
         </div>
     );
 };

@@ -3,7 +3,7 @@ import { TypeAnimation } from 'react-type-animation'
 const Intro = () => {
 
     return (
-        <div id="intro" className="intro">
+        <section id="intro" className="intro">
             <h1 className="myName" >
                 <TypeAnimation sequence={[
                     "Hi, I'm Gakuo 👋"]}
@@ -22,7 +22,11 @@ const Intro = () => {
                 </button>
             </a>
 
-        </div>
+            <a href="#about" className="scroll-arrow">
+                ↓
+            </a>
+
+        </section>
     );
 };
 

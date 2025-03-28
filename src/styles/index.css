@@ -6,6 +6,7 @@ html {
   scroll-behavior: smooth;
 }
 :root {
+  scroll-padding-top: 80px;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -19,7 +20,6 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  scroll-padding-top: 80px;
 }
 
 /* Links */

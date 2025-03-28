@@ -1,18 +1,20 @@
+ /* ========== GLOBAL RESET ========== */
 * {
-  border: transparent solid 1px;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-.App {
-  width:min(90vw, 1100px);
-  min-width: 900px;
-  margin: 0 auto;
-  height: auto;
-  text-align: center;
+  /* Down below for debugging */
+  /* border: 1px solid red; */
 }
 
-/***** NAV BAR *****/
+ /* ========== APP CONTAINER ========== */
+ .App {
+   width: min(90vw, 1100px);
+   margin: 0 auto;
+   text-align: center;
+ }
+
+ /* ========== NAV BAR ========== */
 nav{
   overflow: hidden;
   background-color: white;
@@ -23,6 +25,7 @@ nav{
   padding: 10px 40px;
   z-index: 1000;
 }
+
 .navContainer{
   display: flex;
   flex-direction: row;
@@ -31,11 +34,9 @@ nav{
   width: 100%;
   margin: auto;
 }
-#leftNav a{
+
+#leftNav a, #rightNav a{
   padding: 10px;
-}
-#rightNav a{
-  padding: 5px;
 }
 
 .navbar-brand{
@@ -43,7 +44,7 @@ nav{
   font-size: 1.2rem;
 }
 
-/**** CONTENT SECTION  ****/
+ /* ========== MAIN CONTENT AREA ========== */
 .content {
   display: flex;
   flex-direction: column;
@@ -51,25 +52,23 @@ nav{
   justify-content: center;
   width: 100%;
 }
-.content  div {
-  padding: 25px 0;
-}
+
 .content > div {
+  padding: 25px 0;
   width: min(85vw, 900px);
   margin: 0 auto;
 }
-.content .intro{
-  padding-top: 200px;
-}
 
-/*****  INTRO SECTION  *****/
-.intro {
-  display: flex;
-  flex-direction: column;
-  padding-top: 200px;
-  align-items: center;
 
-}
+ /* ========== INTRO SECTION ========== */
+ .intro {
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center; /* vertical center */
+   align-items: center;     /* horizontal center */
+   padding-top: 80px;       /* offset for fixed nav */
+ }
 .intro h2 {
   font-size: 2.5rem;
   margin: 5px 10px 10px 10px;
@@ -79,17 +78,42 @@ nav{
   margin: 10px 10vw;
 }
 
-/*****  ABOUT SECTION  *****/
+ .scroll-arrow {
+   font-size: 2rem;
+   margin-top: 2rem;
+   cursor: default;
+   color: #888;
+   text-decoration: none;
+   display: inline-block;
+
+   animation: bounce 1.5s ease-in-out infinite;
+   opacity: 1;
+ }
+
+ .scroll-arrow:hover {
+   color: #000;
+ }
+
+ @keyframes bounce {
+   0%, 100% {
+     transform: translateY(0);
+   }
+   50% {
+     transform: translateY(8px);
+   }
+ }
+
+
+ /* ========== ABOUT SECTION========== */
 .about {
   text-align: left;
 }
 
-
 .aboutMeInfo{
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
 }
+
 .aboutText ul {
   font-size: 1.15rem;
   max-height: 90px;
@@ -99,15 +123,14 @@ nav{
   margin-left: 30px;
 }
 .aboutImage img {
-  height: auto;
   max-width: 400px;
+  height: auto;
   border-radius: 5%;
-  border: 0;
   box-shadow: 3px 3px 5px #000;
-
+  transition: top ease 0.2s;
   position: relative;
   top:0;
-  transition: top ease 0.2s;
+  border: none;
 }
 .aboutImage img:hover {
   box-shadow: 3px 3px 10px #000;
@@ -118,7 +141,7 @@ nav{
   margin-top: -10px;
 }
 
-/*****  EXPERIENCE SECTION  *****/
+ /* ========== EXPERIENCE SECTION ========== */
 .experience {
   text-align: left;
 }
