@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import './styles/App.css'
-import NavBar from './components/NavBar.jsx';
+import NavBar from './components/NavBar';
 import FadeInSection from './components/FadeInSection';
-import Intro from "./sections/Intro.jsx";
-import About from "./sections/About.jsx";
-import Experience from "./sections/Experience.jsx";
+import Intro from "./sections/Intro";
+import About from "./sections/About";
+import Experience from "./sections/Experience";
 
 
 
