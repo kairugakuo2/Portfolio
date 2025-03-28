@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import FadeInSection from './components/FadeInSection';
 import Intro from "./sections/Intro.jsx";
 import About from "./sections/About.jsx";
+import Experience from "./sections/Experience.jsx";
 
 
 
@@ -18,6 +19,9 @@ const App = () => {
                 </FadeInSection>
                 <FadeInSection>
                     <About />
+                </FadeInSection>
+                <FadeInSection>
+                    <Experience />
                 </FadeInSection>
             </div>
 

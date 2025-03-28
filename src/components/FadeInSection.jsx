@@ -8,13 +8,13 @@ import { useInView } from "react-intersection-observer";
 const FadeInSection = ({children}) => {
     const { ref, inView} = useInView({
         triggerOnce: true,
-        threshold: 0.5, // trigger when 50% of element is visible
+        threshold: 0.1, // trigger when 50% of element is visible
     });
 
     return (
         <div ref={ref}>
             {inView && (
-                <FadeIn transitionDuration={800}>
+                <FadeIn transitionDuration={1900}>
                     {children}
                 </FadeIn>
             )}

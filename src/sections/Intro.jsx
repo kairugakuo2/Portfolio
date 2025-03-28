@@ -3,7 +3,7 @@ import { TypeAnimation } from 'react-type-animation'
 const Intro = () => {
 
     return (
-        <div className="intro">
+        <div id="intro" className="intro">
             <h1 className="myName" >
                 <TypeAnimation sequence={[
                     "Hi, I'm Gakuo 👋"]}

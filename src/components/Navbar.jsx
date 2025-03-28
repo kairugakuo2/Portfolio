@@ -7,7 +7,7 @@ const Navbar = () => {
                 <div id="leftNav">
                     <a href="#" className="navbar-brand">Gakuo Kairu</a>
 
-                    <a href='#intro'>About</a>
+                    <a href='#about'>About</a>
                     <a href='#experience'>Experience</a>
                     <a href='#projects'>Projects</a>
                 </div>

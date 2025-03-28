@@ -3,8 +3,8 @@ import myImage from '../assets/me.jpeg';
 
 const About = () => {
     return (
-        <div className="about">
-            <h1>/ About Me</h1>
+        <div id="about" className="about">
+            <h1>/ about me</h1>
             <div className="aboutMeInfo">
                 <div className="aboutText">
                     <p>
