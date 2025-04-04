@@ -57,41 +57,39 @@ export default function Experience() {
     const [selectedTab, setSelectedTab] = useState(0);
 
     return (
-        <>
-            <div id="experience" className="experience">
-                <h1>/ experiences </h1>
-                <Box className="experience-container">
-                    {/*vertical tabs */}
-                    <div className="experience-tabs">
-                        <Tabs
-                            orientation="vertical"
-                            value={selectedTab}
-                            onChange={(e, newValue) => setSelectedTab(newValue)}
-                        >
-                            {experiences.map((exp, index) => (
-                                <Tab key={index} label={exp.company} />
-                            ))}
-                        </Tabs>
-                    </div>
-                    {/*Tab Content */}
-                    <div className="experience-content">
-                        <Box>
-                            {experiences.map((exp, index) => (
-                                <Box key={index} hidden={selectedTab !== index}>
-                                    <Typography>
-                                        {exp.title} @ {exp.company}
-                                    </Typography>
-                                    <Typography>
-                                        {exp.duration}
-                                    </Typography>
-                                    <div dangerouslySetInnerHTML={{ __html: exp.details }} />
-                                </Box>
-                            ))}
-                        </Box>
-                    </div>
+        <div id="experience" className="experience">
+            <h1>/ experiences </h1>
+            <Box className="experience-container">
+                {/*vertical tabs */}
+                <div className="experience-tabs">
+                    <Tabs
+                        orientation="vertical"
+                        value={selectedTab}
+                        onChange={(e, newValue) => setSelectedTab(newValue)}
+                    >
+                        {experiences.map((exp, index) => (
+                            <Tab key={index} label={exp.company} />
+                        ))}
+                    </Tabs>
+                </div>
+                {/*Tab Content */}
+                <div className="experience-content">
+                    <Box>
+                        {experiences.map((exp, index) => (
+                            <Box key={index} hidden={selectedTab !== index}>
+                                <Typography>
+                                    {exp.title} @ {exp.company}
+                                </Typography>
+                                <Typography>
+                                    {exp.duration}
+                                </Typography>
+                                <div dangerouslySetInnerHTML={{ __html: exp.details }} />
+                            </Box>
+                        ))}
+                    </Box>
+                </div>
 
-                </Box>
-            </div>
-        </>
+            </Box>
+        </div>
     );
 };

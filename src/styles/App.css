@@ -153,6 +153,15 @@ nav{
 
  /* ========== EXPERIENCE SECTION ========== */
 
+ .experience-container {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+ }
+
+ .experience-content {
+   flex: 1;
+ }
 
  /* ========== MOBILE FORMATTING SECTION ========== */
 
