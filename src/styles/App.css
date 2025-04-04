@@ -45,7 +45,9 @@ nav{
 #leftNav a, #rightNav a{
   padding: 10px;
 }
-
+ .socialIcon {
+   font-size: 1.3rem;
+ }
 .navbar-brand{
   font-weight: bold;
   font-size: 1.2rem;
@@ -162,7 +164,7 @@ nav{
    }
    #rightNav a{
      font-size: 0.9rem;
-     padding: 5px;
+     padding: 10px;
    }
 
    .navContainer{
@@ -173,6 +175,8 @@ nav{
      width: 100%;
      margin: auto;
    }
+
+
    /* Intro responsiveness */
    .intro h1 {
      font-size: 2rem;

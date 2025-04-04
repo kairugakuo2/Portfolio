@@ -21,13 +21,13 @@ const NavBar = () => {
                     </div>
                     <div id="rightNav">
                         <a target="_blank" href="mailto:kairugakuo2@gmail.com">
-                            <FontAwesomeIcon icon={faEnvelope} />
+                            <FontAwesomeIcon icon={faEnvelope} className="socialIcon" />
                         </a>
                         <a target="_blank" href="https://github.com/kairugakuo2">
-                            <FontAwesomeIcon icon={faGithub} />
+                            <FontAwesomeIcon icon={faGithub} className="socialIcon"/>
                         </a>
                         <a target="_blank" href="https://www.linkedin.com/in/gakuo/">
-                            <FontAwesomeIcon icon={faLinkedin} />
+                            <FontAwesomeIcon icon={faLinkedin} className="socialIcon"/>
                         </a>
                     </div>
                 </div>
