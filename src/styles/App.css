@@ -23,16 +23,24 @@ nav{
   left: 0; /* start at left */
   padding: 10px 40px;
   z-index: 1000;
+  border-bottom: lightgrey solid 1px;
 }
-
-.navContainer{
+ .navContainer{
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   margin: auto;
+ }
+.navLinks {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin: auto;
+  padding-left: 20px;
 }
+
 
 #leftNav a, #rightNav a{
   padding: 10px;
@@ -41,6 +49,7 @@ nav{
 .navbar-brand{
   font-weight: bold;
   font-size: 1.2rem;
+  flex-shrink:0;
 }
 
  /* ========== MAIN CONTENT AREA ========== */
@@ -141,46 +150,29 @@ nav{
 }
 
  /* ========== EXPERIENCE SECTION ========== */
+
+
+ /* ========== MOBILE FORMATTING SECTION ========== */
+
  @media (max-width: 768px) {
    /* Updated nav styles */
-   .hamburger {
-     display: block;
-     position: absolute;
-     right: 20px;
-     top: 10px;
-   }
 
-   .navLinks {
+   #leftNav a{
      display: none;
-     flex-direction: column;
-     width: 100%;
-     gap: 10px;
-     margin-top: 10px;
+   }
+   #rightNav a{
+     font-size: 0.9rem;
+     padding: 5px;
    }
 
-   .navLinks.open {
+   .navContainer{
      display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+     margin: auto;
    }
-
-   #leftNav,
-   #rightNav {
-     flex-direction: column;
-     gap: 8px;
-     align-items: flex-start;
-   }
-
-   #leftNav a,
-   #rightNav a {
-     padding: 5px 10px;
-     font-size: 1rem;
-   }
-
-   .navContainer {
-     flex-direction: column;
-     align-items: flex-start;
-     position: relative;
-   }
-
    /* Intro responsiveness */
    .intro h1 {
      font-size: 2rem;

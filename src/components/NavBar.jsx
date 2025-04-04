@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope} from "@fortawesome/free-solid-svg-icons";
+import { faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons';
 import "../styles/App.css";
 
 const NavBar = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <nav className="navbar">
@@ -10,26 +12,23 @@ const NavBar = () => {
                 {/* Brand / Name */}
                 <a href="#" className="navbar-brand">Gakuo Kairu</a>
 
-                {/* Hamburger icon (only shows on mobile) */}
-                <button
-                    className="hamburger"
-                    onClick={() => setMenuOpen(!menuOpen)}
-                    aria-label="Toggle menu"
-                >
-                    ☰
-                </button>
-
                 {/* Full nav links – always visible on desktop, dropdown on mobile */}
-                <div className={`navLinks ${menuOpen ? "open" : ""}`}>
+                <div className={"navLinks"}>
                     <div id="leftNav">
                         <a href="#about">About</a>
                         <a href="#experience">Experience</a>
                         <a href="#projects">Projects</a>
                     </div>
                     <div id="rightNav">
-                        <a target="_blank" href="mailto:kairugakuo2@gmail.com">Email</a>
-                        <a target="_blank" href="https://github.com/kairugakuo2">GitHub</a>
-                        <a target="_blank" href="https://www.linkedin.com/in/gakuo/">LinkedIn</a>
+                        <a target="_blank" href="mailto:kairugakuo2@gmail.com">
+                            <FontAwesomeIcon icon={faEnvelope} />
+                        </a>
+                        <a target="_blank" href="https://github.com/kairugakuo2">
+                            <FontAwesomeIcon icon={faGithub} />
+                        </a>
+                        <a target="_blank" href="https://www.linkedin.com/in/gakuo/">
+                            <FontAwesomeIcon icon={faLinkedin} />
+                        </a>
                     </div>
                 </div>
             </div>
