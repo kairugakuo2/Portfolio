@@ -8,18 +8,18 @@ const About = () => {
             <div className="aboutMeInfo">
                 <div className="aboutText">
                     <p>
-                        I'm am currently a student programmer at the University of Oklahoma, working under
-                        the LLC Department. At the same time, I am undertaking a full-time Bachelor's of
+                        I am currently a <strong>student programmer</strong> at the University of Oklahoma, working under
+                        the Language Learning Center (LLC). At the same time, I am undertaking a full-time Bachelor's of
                         Science in Computer Science at the University of Oklahoma.
                     </p>
                     <p> Here are some technologies I have been working with: </p>
                     <ul>
-                        <li>C++</li>
+                        <li>C/C++</li>
                         <li>Java</li>
-                        <li>Python</li>
+                        <li>Python3</li>
                         <li>React.js</li>
                         <li>Node.js</li>
-                        <li>SQL</li>
+                        <li>MySQL</li>
                     </ul>
                     <p>
                         Outside of work and school, I'm interested in learning about vulnerabilities

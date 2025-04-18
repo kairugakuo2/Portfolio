@@ -66,9 +66,16 @@ export default function Experience() {
                         orientation="vertical"
                         value={selectedTab}
                         onChange={(e, newValue) => setSelectedTab(newValue)}
+                        sx={{
+                            alignItems: "flex-start",
+                        }}
                     >
                         {experiences.map((exp, index) => (
-                            <Tab key={index} label={exp.company} />
+                            <Tab
+                                key={index}
+                                label={exp.company}
+                                sx={{justifyContent: "flex-start", textAlign: "left"}}
+                            />
                         ))}
                     </Tabs>
                 </div>

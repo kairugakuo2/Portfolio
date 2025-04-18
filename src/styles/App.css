@@ -63,9 +63,8 @@ nav{
   width: 100%;
 }
 
-.content > div {
-  padding: 25px 0;
-  width: min(85vw, 900px);
+.content > div:not(.intro) {
+  padding: 0px 0px 200px 0px;
   margin: 0 auto;
 }
 
@@ -156,8 +155,13 @@ nav{
  .experience-container {
    display: flex;
    flex-direction: row;
-   align-items: center;
+   align-items: flex-start;
  }
+ .MuiTab-root {
+   justify-content: flex-start !important;
+   text-align: left !important;
+ }
+
 
  .experience-content {
    flex: 1;
@@ -191,7 +195,7 @@ nav{
      font-size: 2rem;
    }
 
-   .intro h2 {
+   h2 {
      font-size: 1.5rem;
    }
 
@@ -223,9 +227,7 @@ nav{
    .experience-container {
      flex-direction: column;
      gap: 1rem;
+     text-align: left;
    }
 
-   .experience-tabs {
-     align-self: center;
-   }
  }
