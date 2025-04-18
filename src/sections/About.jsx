@@ -14,7 +14,7 @@ const About = () => {
                     </p>
                     <p> Here are some technologies I have been working with: </p>
                     <ul>
-                        <li>C/C++</li>
+                        <li>C++</li>
                         <li>Java</li>
                         <li>Python3</li>
                         <li>React.js</li>

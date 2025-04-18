@@ -13,7 +13,7 @@ const Intro = () => {
             </h1>
             <h2 >I make stuff sometimes</h2>
             <p>
-                I'm an Sophomore at the University of Oklahoma and aspiring software engineer with a passion for
+                I am a Sophomore at the University of Oklahoma and aspiring software engineer with a passion for
                 Web Development and Machine Learning. Welcome to my portfolio!
             </p>
             <a href="mailto:kairugakuo2@gmail.com">
