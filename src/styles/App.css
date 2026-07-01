@@ -405,6 +405,15 @@ nav{
      gap: 1rem;
    }
 
+   /* Section header responsiveness */
+   .about h1,
+   .experience h1,
+   .leadership h1,
+   .projects h1,
+   .skills h1 {
+     font-size: 1.75rem;
+   }
+
  }
 
  /* ========== THEME TOGGLE ========== */
