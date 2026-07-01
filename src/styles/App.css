@@ -375,3 +375,23 @@ nav{
    }
 
  }
+
+ /* ========== THEME TOGGLE ========== */
+.theme-toggle {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  border-radius: 4px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: border-color 150ms ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+}

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import './styles/App.css'
+import { ThemeProvider } from './context/ThemeContext';
 import NavBar from './components/NavBar';
 import FadeInSection from './components/FadeInSection';
 import Intro from "./sections/Intro";
@@ -17,23 +18,25 @@ const App = () => {
         }, 0);
     }, []);
     return (
-        <div className="App" >
-            <NavBar/>
+        <ThemeProvider>
+            <div className="App" >
+                <NavBar/>
 
-            <div className="content">
-                <FadeInSection>
-                    <Intro />
-                </FadeInSection>
-                <FadeInSection>
-                    <About />
-                </FadeInSection>
-                <FadeInSection>
-                    <Experience />
-                </FadeInSection>
+                <div className="content">
+                    <FadeInSection>
+                        <Intro />
+                    </FadeInSection>
+                    <FadeInSection>
+                        <About />
+                    </FadeInSection>
+                    <FadeInSection>
+                        <Experience />
+                    </FadeInSection>
+                </div>
+
+
             </div>
-
-
-        </div>
+        </ThemeProvider>
     );
 };
 export default App

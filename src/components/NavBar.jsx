@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope} from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons';
+import ThemeToggle from "./ThemeToggle";
 import "../styles/App.css";
 
 const NavBar = () => {
@@ -29,6 +30,7 @@ const NavBar = () => {
                         <a target="_blank" href="https://www.linkedin.com/in/gakuo/">
                             <FontAwesomeIcon icon={faLinkedin} className="socialIcon"/>
                         </a>
+                        <ThemeToggle />
                     </div>
                 </div>
             </div>
