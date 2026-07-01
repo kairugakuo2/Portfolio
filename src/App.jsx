@@ -9,6 +9,7 @@ import Experience from "./sections/Experience";
 import Leadership from "./sections/Leadership";
 import Projects from "./sections/Projects";
 import Skills from "./sections/Skills";
+import Footer from './components/Footer';
 
 
 
@@ -46,6 +47,7 @@ const App = () => {
                     </FadeInSection>
                 </div>
 
+                <Footer />
 
             </div>
         </ThemeProvider>
