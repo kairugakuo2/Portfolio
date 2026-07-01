@@ -360,6 +360,51 @@ nav{
      font-size: 0.8rem;
    }
 
+   /* Leadership responsiveness */
+   .leadership-grid {
+     grid-template-columns: 1fr;
+     gap: 1.5rem;
+   }
+
+   .leadership-card {
+     padding: 1.5rem;
+   }
+
+   .leadership-header {
+     flex-direction: column;
+     align-items: flex-start;
+     gap: 0.5rem;
+   }
+
+   .org-name {
+     font-size: 1.2rem;
+     min-width: auto;
+   }
+
+   /* Projects responsiveness */
+   .projects-grid {
+     grid-template-columns: 1fr;
+     gap: 1.5rem;
+   }
+
+   .project-card {
+     padding: 1.5rem;
+   }
+
+   .project-name {
+     font-size: 1.2rem;
+   }
+
+   /* Footer responsiveness */
+   .footer {
+     padding: 2rem 1rem 1.5rem 1rem;
+     text-align: center;
+   }
+
+   .footer-social {
+     gap: 1rem;
+   }
+
  }
 
  /* ========== THEME TOGGLE ========== */
