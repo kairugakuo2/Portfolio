@@ -20,6 +20,7 @@ const NavBar = () => {
                         <a href="#experience">Experience</a>
                         <a href="#leadership">Leadership</a>
                         <a href="#projects">Projects</a>
+                        <a href="#skills">Skills</a>
                     </div>
                     <div id="rightNav">
                         <a target="_blank" href="mailto:kairugakuo2@gmail.com">

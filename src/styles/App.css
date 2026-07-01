@@ -525,3 +525,33 @@ nav{
 .project-highlights li {
   margin-bottom: 0.4rem;
 }
+
+ /* ========== SKILLS SECTION ========== */
+.skills {
+  text-align: left;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.skills h1 {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.skills-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.skills-group-title {
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
