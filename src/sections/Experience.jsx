@@ -3,6 +3,20 @@ import "../styles/App.css";
 
 const experiences = [
     {
+        company: "Argo Data",
+        title: "Software Engineer Intern",
+        duration: "JUN 2026 - PRESENT",
+        description: "Building a secure signing key bootstrap and rotation system in C#/.NET for GLBA/HIPAA-regulated banking infrastructure. Implementing DPAPI-encrypted local key cache, Registrar API client, and automated rotation logic with resilient failure recovery. Writing MSTest coverage for bootstrap, cache, DPAPI round-trip, rotation, and Registrar error scenarios.",
+        skills: ["C#", ".NET", "MSTest", "Security", "Banking Infrastructure"]
+    },
+    {
+        company: "William Kerber Software Studio",
+        title: "Founder (Selected Team)",
+        duration: "FEB 2026 - PRESENT",
+        description: "Selected as part of a 4 person team to develop a professional esports media aggregation platform. Led UI/UX design through Figma prototypes used in investor pitch and MVP planning.",
+        skills: ["UI/UX Design", "Figma", "Product Strategy", "Team Leadership"]
+    },
+    {
         company: "University of Oklahoma",
         title: "Student Programmer",
         duration: "FEB 2025 - PRESENT",
