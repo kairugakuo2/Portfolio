@@ -1,12 +1,40 @@
+ /* ========== THEME VARIABLES ========== */
+:root {
+  --color-bg: #FAFAFA;
+  --color-bg-elevated: #FFFFFF;
+  --color-text: #111827;
+  --color-text-muted: #4B5563;
+  --color-border: #E5E7EB;
+  --color-accent: #2563EB;
+  --color-accent-text: #FFFFFF;
+  --font-body: "IBM Plex Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+[data-theme="dark"] {
+  --color-bg: #0F172A;
+  --color-bg-elevated: #1E293B;
+  --color-text: #F8FAFC;
+  --color-text-muted: #94A3B8;
+  --color-border: #334155;
+  --color-accent: #60A5FA;
+  --color-accent-text: #0F172A;
+}
+
  /* ========== GLOBAL RESET ========== */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* Down below for debugging */
-  /* border: 1px solid red; */
 }
-/* test*/
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
  /* ========== APP CONTAINER ========== */
  .App {
    width: min(90vw, 1100px);
