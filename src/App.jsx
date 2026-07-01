@@ -6,6 +6,7 @@ import FadeInSection from './components/FadeInSection';
 import Intro from "./sections/Intro";
 import About from "./sections/About";
 import Experience from "./sections/Experience";
+import Leadership from "./sections/Leadership";
 
 
 
@@ -31,6 +32,9 @@ const App = () => {
                     </FadeInSection>
                     <FadeInSection>
                         <Experience />
+                    </FadeInSection>
+                    <FadeInSection>
+                        <Leadership />
                     </FadeInSection>
                 </div>
 

@@ -18,6 +18,7 @@ const NavBar = () => {
                     <div id="leftNav">
                         <a href="#about">About</a>
                         <a href="#experience">Experience</a>
+                        <a href="#leadership">Leadership</a>
                         <a href="#projects">Projects</a>
                     </div>
                     <div id="rightNav">

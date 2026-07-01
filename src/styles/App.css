@@ -381,3 +381,69 @@ nav{
 .theme-toggle:hover {
   border-color: var(--color-accent);
 }
+
+ /* ========== LEADERSHIP SECTION ========== */
+.leadership {
+  text-align: left;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.leadership h1 {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.leadership-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.leadership-card {
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: transform 150ms ease, border-color 150ms ease;
+}
+
+.leadership-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+}
+
+.leadership-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.org-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+}
+
+.role-title {
+  font-size: 1.1rem;
+  color: var(--color-accent);
+  margin: 0 0 1rem 0;
+  font-weight: 600;
+}
+
+.role-description {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
