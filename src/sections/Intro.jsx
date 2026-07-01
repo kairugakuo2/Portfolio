@@ -11,10 +11,10 @@ const Intro = () => {
                     repeat={1}
                 />
             </h1>
-            <h2 >I make stuff sometimes</h2>
+            <h2 >I like to make cool stuff</h2>
             <p>
                 I am a Sophomore at the University of Oklahoma and aspiring software engineer with a passion for
-                Web Development and Machine Learning. Welcome to my portfolio!
+                Web Development. Welcome to my portfolio!
             </p>
             <a href="mailto:kairugakuo2@gmail.com">
                 <button  className="button" style={{fontSize: "1.5rem", margin: 10}}>
