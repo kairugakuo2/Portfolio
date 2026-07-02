@@ -10,6 +10,7 @@
   --color-accent-text: #FFFFFF;
   --font-body: "IBM Plex Sans", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
+  --crt-line: rgba(0, 0, 0, 0.12);
 }
 
 [data-theme="dark"] {
@@ -21,6 +22,7 @@
   --color-border: #334155;
   --color-accent: #60A5FA;
   --color-accent-text: #0F172A;
+  --crt-line: rgba(255, 255, 255, 0.08);
 }
 
  /* ========== GLOBAL RESET ========== */
@@ -908,8 +910,35 @@ nav{
   color: var(--color-text);
 }
 
+ /* ========== CRT FLICKER ========== */
+@keyframes crt-flicker {
+  0% { opacity: 0.9; }
+  30% { opacity: 0.3; }
+  60% { opacity: 0.7; }
+  100% { opacity: 0; }
+}
+
+.crt-flicker {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--crt-line),
+    var(--crt-line) 2px,
+    transparent 2px,
+    transparent 5px
+  );
+  animation: crt-flicker 150ms ease-out forwards;
+}
+
  /* ========== REDUCED MOTION ========== */
 @media (prefers-reduced-motion: reduce) {
+  .crt-flicker {
+    display: none;
+  }
+
   #leftNav a::after {
     transition: none;
   }

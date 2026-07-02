@@ -24,6 +24,26 @@ const App = () => {
 
         }, 0);
     }, []);
+
+    useEffect(() => {
+        /* eslint-disable no-console */
+        console.log(
+            "%c" +
+            " ██████   █████  ██   ██ ██    ██  ██████  \n" +
+            "██       ██   ██ ██  ██  ██    ██ ██    ██ \n" +
+            "██   ███ ███████ █████   ██    ██ ██    ██ \n" +
+            "██    ██ ██   ██ ██  ██  ██    ██ ██    ██ \n" +
+            " ██████  ██   ██ ██   ██  ██████   ██████  ",
+            "font-family: monospace; color: #2563EB;"
+        );
+        console.log(
+            "%clike what you see? let's talk → kairugakuo2@gmail.com\n" +
+            "https://github.com/kairugakuo2",
+            "font-family: monospace; font-size: 12px;"
+        );
+        /* eslint-enable no-console */
+    }, []);
+
     return (
         <ThemeProvider>
             <div className="App" >
