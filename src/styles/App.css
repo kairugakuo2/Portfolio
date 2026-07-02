@@ -781,6 +781,26 @@ nav{
   font-weight: 600;
 }
 
+ /* ========== STATUS BAR ========== */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.4rem 1rem;
+  background: var(--color-bg-elevated);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.status-group {
+  display: flex;
+  gap: 1.25rem;
+}
+
  /* ========== REDUCED MOTION ========== */
 @media (prefers-reduced-motion: reduce) {
   #leftNav a::after {
