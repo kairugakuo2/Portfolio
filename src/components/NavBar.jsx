@@ -6,7 +6,7 @@ import ThemeToggle from "./ThemeToggle";
 import ScrollProgress from "./ScrollProgress";
 import "../styles/App.css";
 
-const NavBar = () => {
+const NavBar = ({ onOpenPalette }) => {
 
     return (
         <nav className="navbar">
@@ -33,6 +33,14 @@ const NavBar = () => {
                         <a target="_blank" href="https://www.linkedin.com/in/gakuo/">
                             <FontAwesomeIcon icon={faLinkedin} className="socialIcon"/>
                         </a>
+                        <button
+                            type="button"
+                            className="cmdk-hint"
+                            onClick={onOpenPalette}
+                            aria-label="Open command palette"
+                        >
+                            ⌘K
+                        </button>
                         <ThemeToggle />
                     </div>
                 </div>

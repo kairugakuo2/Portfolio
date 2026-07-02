@@ -462,6 +462,11 @@ nav{
      font-size: 1.75rem;
    }
 
+   /* Command palette hint hidden on mobile */
+   .cmdk-hint {
+     display: none;
+   }
+
  }
 
  /* ========== THEME TOGGLE ========== */
@@ -799,6 +804,108 @@ nav{
 .status-group {
   display: flex;
   gap: 1.25rem;
+}
+
+ /* ========== COMMAND PALETTE ========== */
+.palette-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 18vh;
+}
+
+.palette {
+  width: min(90vw, 560px);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.palette-input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.palette-prompt {
+  font-family: var(--font-mono);
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.palette-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+}
+
+.palette-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.palette-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.palette-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-left: 2px solid transparent;
+  border-radius: 0;
+  padding: 0.55rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.palette-item-selected {
+  border-left-color: var(--color-accent);
+  background: var(--color-bg);
+}
+
+.palette-empty {
+  padding: 0.55rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.cmdk-hint {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.cmdk-hint:hover {
+  border-color: var(--color-accent);
+  color: var(--color-text);
 }
 
  /* ========== REDUCED MOTION ========== */

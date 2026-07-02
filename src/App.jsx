@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import './styles/App.css'
 import { ThemeProvider } from './context/ThemeContext';
 import NavBar from './components/NavBar';
 import FadeInSection from './components/FadeInSection';
+import CommandPalette from './components/CommandPalette';
 import Intro from "./sections/Intro";
 import About from "./sections/About";
 import Experience from "./sections/Experience";
@@ -14,6 +15,8 @@ import Footer from './components/Footer';
 
 
 const App = () => {
+    const [paletteOpen, setPaletteOpen] = useState(false);
+
     useEffect(() => {
         //reset the scroll position on load
         setTimeout(() => {
@@ -24,7 +27,12 @@ const App = () => {
     return (
         <ThemeProvider>
             <div className="App" >
-                <NavBar/>
+                <NavBar onOpenPalette={() => setPaletteOpen(true)} />
+                <CommandPalette
+                    open={paletteOpen}
+                    onOpen={() => setPaletteOpen(true)}
+                    onClose={() => setPaletteOpen(false)}
+                />
 
                 <div className="content">
                     <FadeInSection>
