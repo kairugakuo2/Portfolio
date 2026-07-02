@@ -52,7 +52,7 @@ export default function Experience() {
             <h1>/ experiences</h1>
             <div className="experience-grid">
                 {experiences.map((exp, index) => (
-                    <div key={index} className="experience-card">
+                    <div key={index} className="experience-card" style={{ "--stagger-index": index }}>
                         <div className="experience-header">
                             <h3 className="company-name">{exp.company}</h3>
                             <span className="duration">{exp.duration}</span>

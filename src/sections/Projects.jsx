@@ -48,7 +48,7 @@ export default function Projects() {
             <h1>/ projects</h1>
             <div className="projects-grid">
                 {projects.map((project, index) => (
-                    <div key={index} className="project-card">
+                    <div key={index} className="project-card" style={{ "--stagger-index": index }}>
                         <div className="project-header">
                             <h3 className="project-name">{project.name}</h3>
                             <a

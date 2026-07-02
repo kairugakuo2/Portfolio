@@ -16,7 +16,7 @@ export default function Leadership() {
             <h1>/ leadership</h1>
             <div className="leadership-grid">
                 {leadership.map((role, index) => (
-                    <div key={index} className="leadership-card">
+                    <div key={index} className="leadership-card" style={{ "--stagger-index": index }}>
                         <div className="leadership-header">
                             <h3 className="org-name">{role.organization}</h3>
                             <span className="duration">{role.duration}</span>

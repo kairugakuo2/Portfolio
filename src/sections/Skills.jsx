@@ -21,8 +21,8 @@ export default function Skills() {
         <div id="skills" className="skills">
             <h1>/ skills</h1>
             <div className="skills-groups">
-                {skillGroups.map((group) => (
-                    <div key={group.category} className="skills-group">
+                {skillGroups.map((group, index) => (
+                    <div key={group.category} className="skills-group" style={{ "--stagger-index": index }}>
                         <h4 className="skills-group-title">{group.category}</h4>
                         <div className="skills-container">
                             {group.items.map((item) => (
