@@ -26,7 +26,6 @@ const App = () => {
     }, []);
 
     useEffect(() => {
-        /* eslint-disable no-console */
         console.log(
             "%c" +
             " ██████   █████  ██   ██ ██    ██  ██████  \n" +
@@ -41,7 +40,6 @@ const App = () => {
             "https://github.com/kairugakuo2",
             "font-family: monospace; font-size: 12px;"
         );
-        /* eslint-enable no-console */
     }, []);
 
     return (
