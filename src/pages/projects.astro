@@ -1,0 +1,55 @@
+---
+import Base from "../layouts/Base.astro";
+import { projects } from "../data/projects";
+---
+
+<Base
+  title="Projects"
+  description="Things I've built — APIs, schedulers, and collaboration tools."
+>
+  <section class="page-head">
+    <h1>/ projects</h1>
+    <p class="section-intro">
+      Source is linked on everything here. Where a project raised a problem
+      worth writing about at length, the essay is linked too.
+    </p>
+  </section>
+
+  <div class="projects-grid projects-grid-full">
+    {
+      projects.map((project, index) => (
+        <div class="project-card" style={`--stagger-index:${index}`}>
+          <div class="project-header">
+            <h3 class="project-name">{project.name}</h3>
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noreferrer"
+              class="project-github-link"
+              aria-label={`View ${project.name} on GitHub`}
+            >
+              source ↗
+            </a>
+          </div>
+          <span class="duration">{project.duration}</span>
+          <p class="project-description">{project.summary}</p>
+          <ul class="card-bullets">
+            {project.highlights.map((highlight) => (
+              <li>{highlight}</li>
+            ))}
+          </ul>
+          <div class="skills-container">
+            {project.tech.map((tech) => (
+              <span class="skill-tag">{tech}</span>
+            ))}
+          </div>
+          {project.related && (
+            <a href={`/writing/${project.related}`} class="card-related">
+              related writing →
+            </a>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</Base>

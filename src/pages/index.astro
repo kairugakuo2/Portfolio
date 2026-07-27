@@ -1,0 +1,137 @@
+---
+import Base from "../layouts/Base.astro";
+import WriteupCard from "../components/WriteupCard.astro";
+import { getCollection } from "astro:content";
+import { site } from "../data/site";
+import { experience } from "../data/experience";
+import { projects } from "../data/projects";
+
+const writings = (await getCollection("writing", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const featuredWritings = writings.filter((w) => w.data.featured).slice(0, 3);
+const featuredProjects = projects.filter((p) => p.featured);
+---
+
+<Base>
+  <section class="hero">
+    <p class="hero-eyebrow">$ whoami</p>
+    <h1 class="hero-name">{site.name}</h1>
+    <p class="hero-tagline">{site.tagline}</p>
+    <p class="hero-subline">{site.subline}</p>
+    <div class="hero-actions">
+      <a href="/writing" class="button button-primary">Read the technical writing</a>
+      <a href={`mailto:${site.email}`} class="button">Get in touch</a>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <div class="section-head">
+      <h2>/ writing</h2>
+      <a href="/writing" class="section-link">all essays →</a>
+    </div>
+    <p class="section-intro">
+      Long-form notes on the problems I work on: key management, API failure
+      modes, and the security boundaries around services that other systems
+      depend on.
+    </p>
+    <div class="writeup-grid">
+      {
+        featuredWritings.map((entry, i) => (
+          <WriteupCard
+            slug={entry.id}
+            title={entry.data.title}
+            summary={entry.data.summary}
+            date={entry.data.date}
+            tags={entry.data.tags}
+            provenance={entry.data.provenance}
+            readingTime={entry.data.readingTime}
+            index={i}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="home-section">
+    <div class="section-head">
+      <h2>/ git log --experience</h2>
+      <a href="/about" class="section-link">full background →</a>
+    </div>
+    <div class="experience-grid">
+      {
+        experience.map((exp, index) => (
+          <div class="experience-card" style={`--stagger-index:${index}`}>
+            <div class="experience-header">
+              <h3 class="company-name">{exp.company}</h3>
+              <span class="duration">
+                <span class="commit-hash">{exp.hash}</span>
+                {" · "}
+                {exp.from} {" → "}
+                {exp.to === "HEAD" ? <span class="head-ref">HEAD</span> : exp.to}
+              </span>
+            </div>
+            <h4 class="job-title">{exp.title}</h4>
+            <p class="job-description">{exp.description}</p>
+            <ul class="card-bullets">
+              {exp.bullets.map((bullet) => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
+            <div class="skills-container">
+              {exp.skills.map((skill) => (
+                <span class="skill-tag">{skill}</span>
+              ))}
+            </div>
+            {exp.related && (
+              <a href={`/writing/${exp.related}`} class="card-related">
+                related writing →
+              </a>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="home-section">
+    <div class="section-head">
+      <h2>/ projects</h2>
+      <a href="/projects" class="section-link">all projects →</a>
+    </div>
+    <div class="projects-grid">
+      {
+        featuredProjects.map((project, index) => (
+          <div class="project-card" style={`--stagger-index:${index}`}>
+            <div class="project-header">
+              <h3 class="project-name">{project.name}</h3>
+              <a href={project.github} target="_blank" rel="noreferrer" class="project-github-link">
+                source ↗
+              </a>
+            </div>
+            <span class="duration">{project.duration}</span>
+            <p class="project-description">{project.summary}</p>
+            <div class="skills-container">
+              {project.tech.map((tech) => (
+                <span class="skill-tag">{tech}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="home-section contact-block">
+    <h2>/ contact</h2>
+    <p>
+      I'm looking for summer 2027 software engineering internships in
+      distributed systems, backend infrastructure, or security.
+    </p>
+    <div class="hero-actions">
+      <a href={`mailto:${site.email}`} class="button button-primary">{site.email}</a>
+      <a href={site.github} target="_blank" rel="noreferrer" class="button">GitHub</a>
+      <a href={site.linkedin} target="_blank" rel="noreferrer" class="button">LinkedIn</a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,45 @@
+---
+import Base from "../../layouts/Base.astro";
+import WriteupCard from "../../components/WriteupCard.astro";
+import { getCollection } from "astro:content";
+
+const writings = (await getCollection("writing", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Base
+  title="Writing"
+  description="Technical writing on key management, distributed systems failure modes, and API security."
+>
+  <section class="page-head">
+    <h1>/ writing</h1>
+    <p class="section-intro">
+      Notes on the problems I spend my time in: how services prove who they are
+      to each other, how APIs behave when something downstream breaks, and where
+      the security boundaries actually sit.
+    </p>
+    <p class="section-intro subtle">
+      Each essay is labelled with what kind of evidence backs it — work I
+      shipped, a problem class I understand, or a position I'm arguing. I'd
+      rather tell you which is which than let you assume.
+    </p>
+  </section>
+
+  <div class="writeup-grid writeup-grid-full">
+    {
+      writings.map((entry, i) => (
+        <WriteupCard
+          slug={entry.id}
+          title={entry.data.title}
+          summary={entry.data.summary}
+          date={entry.data.date}
+          tags={entry.data.tags}
+          provenance={entry.data.provenance}
+          readingTime={entry.data.readingTime}
+          index={i}
+        />
+      ))
+    }
+  </div>
+</Base>
