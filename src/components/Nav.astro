@@ -3,28 +3,23 @@ import ThemeToggle from "./ThemeToggle.jsx";
 import ScrollProgress from "./ScrollProgress.jsx";
 import { site } from "../data/site";
 
-const path = Astro.url.pathname;
-const isActive = (href: string) =>
-  href === "/" ? path === "/" : path.startsWith(href);
-
 const links = [
-  { href: "/writing", label: "Writing" },
-  { href: "/projects", label: "Projects" },
-  { href: "/about", label: "About" },
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
+  { href: "#skills", label: "Skills" },
 ];
 ---
 
 <nav class="navbar">
   <div class="navContainer">
-    <a href="/" class="navbar-brand">{site.name}</a>
+    <a href="#" class="navbar-brand">{site.name}</a>
 
     <div class="navLinks">
       <div id="leftNav">
         {
           links.map((link) => (
-            <a href={link.href} class:list={[{ "nav-active": isActive(link.href) }]}>
-              {link.label}
-            </a>
+            <a href={link.href}>{link.label}</a>
           ))
         }
       </div>

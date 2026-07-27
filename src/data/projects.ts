@@ -1,5 +1,6 @@
 export const projects = [
   {
+    id: "url-shortener",
     name: "URL Shortener API",
     duration: "SEP 2025 - PRESENT",
     summary:
@@ -12,10 +13,12 @@ export const projects = [
     ],
     tech: ["C#", "ASP.NET Core", "SQLite", "EF Core", "Docker", "xUnit"],
     github: "https://github.com/kairugakuo2/url-shortener-minimal",
-    related: "api-that-fails-correctly",
+    insight:
+      "A URL shortener is, by definition, a service that takes attacker-controlled input and hands other people a link your domain vouches for — so validation is a security boundary, not a nicety. I allowlist schemes (http/https only, never a blocklist), reject internal/private hosts to close off an SSRF path, and cap length before anything touches the database. Every failure returns the same ProblemDetails shape whether it's a 400, 404, or 500, and unhandled exceptions get a generic message to the client — details only ever go to logs. Most of the test suite exists to exercise the failure paths, since those are the ones that only run when something's already going wrong.",
     featured: true,
   },
   {
+    id: "sooner-planner",
     name: "Sooner Planner",
     duration: "JUNE 2025 - PRESENT",
     summary:
@@ -30,6 +33,7 @@ export const projects = [
     featured: true,
   },
   {
+    id: "studysync",
     name: "StudySync",
     duration: "AUG 2025 - DEC 2025",
     summary:

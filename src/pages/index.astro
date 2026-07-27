@@ -1,16 +1,12 @@
 ---
 import Base from "../layouts/Base.astro";
-import WriteupCard from "../components/WriteupCard.astro";
-import { getCollection } from "astro:content";
+import DetailModal from "../components/DetailModal.astro";
 import { site } from "../data/site";
-import { experience } from "../data/experience";
+import { experience, otherWork, leadership } from "../data/experience";
 import { projects } from "../data/projects";
-
-const writings = (await getCollection("writing", ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
-const featuredWritings = writings.filter((w) => w.data.featured).slice(0, 3);
-const featuredProjects = projects.filter((p) => p.featured);
+import { skillGroups } from "../data/skills";
+import myImage from "../assets/me.jpeg";
+import { Image } from "astro:assets";
 ---
 
 <Base>
@@ -20,48 +16,74 @@ const featuredProjects = projects.filter((p) => p.featured);
     <p class="hero-tagline">{site.tagline}</p>
     <p class="hero-subline">{site.subline}</p>
     <div class="hero-actions">
-      <a href="/writing" class="button button-primary">Read the technical writing</a>
+      <a href="#projects" class="button button-primary">See my work</a>
       <a href={`mailto:${site.email}`} class="button">Get in touch</a>
     </div>
   </section>
 
-  <section class="home-section">
-    <div class="section-head">
-      <h2>/ writing</h2>
-      <a href="/writing" class="section-link">all essays →</a>
+  <section id="about" class="home-section">
+    <h2>/ about</h2>
+    <div class="about-layout">
+      <div class="about-text prose">
+        <p>
+          I'm a Computer Science student at the University of Oklahoma, graduating
+          May 2027. I work on the parts of a system that other systems depend on —
+          identity, key material, and the APIs in between.
+        </p>
+        <p>
+          Right now that means interning at <strong>Argo Data</strong>, building a
+          zero-trust identity subsystem in C# and .NET 8 for banking
+          infrastructure operating under GLBA and HIPAA — signing key
+          bootstrapping and rotation: how a service proves who it is without a
+          human copying a secret between machines, and what happens when the
+          component that issues those keys goes down mid-rotation. Click the
+          card below for more on that.
+        </p>
+        <p>
+          I've also been thinking about how the same instincts apply to
+          LLM-backed APIs — prompt injection is untrusted input reaching a
+          privileged interpreter, which is a security problem I already know how
+          to think about, just wearing a new hat. Nothing shipped there yet, but
+          it's where I expect the next interesting problems to be.
+        </p>
+        <p>
+          Before this I ran a mobile detailing business, led a 5-person team as
+          technical lead, and maintained department web and desktop apps at OU's
+          Language Learning Center. Outside of work I read about vulnerability
+          classes, play too many video games, and cook.
+        </p>
+      </div>
+      <div class="about-image">
+        <Image src={myImage} alt="Gakuo Kairu" widths={[320, 480]} sizes="(max-width: 768px) 80vw, 400px" />
+      </div>
     </div>
-    <p class="section-intro">
-      Long-form notes on the problems I work on: key management, API failure
-      modes, and the security boundaries around services that other systems
-      depend on.
-    </p>
-    <div class="writeup-grid">
-      {
-        featuredWritings.map((entry, i) => (
-          <WriteupCard
-            slug={entry.id}
-            title={entry.data.title}
-            summary={entry.data.summary}
-            date={entry.data.date}
-            tags={entry.data.tags}
-            provenance={entry.data.provenance}
-            readingTime={entry.data.readingTime}
-            index={i}
-          />
-        ))
-      }
+
+    <div class="experience-card education-card">
+      <div class="experience-header">
+        <h3 class="company-name">{site.education.school}</h3>
+        <span class="duration">Expected {site.education.graduation}</span>
+      </div>
+      <h4 class="job-title">{site.education.degree}</h4>
+      <div class="skills-container">
+        {site.education.coursework.map((course) => <span class="skill-tag">{course}</span>)}
+      </div>
     </div>
   </section>
 
-  <section class="home-section">
-    <div class="section-head">
-      <h2>/ git log --experience</h2>
-      <a href="/about" class="section-link">full background →</a>
-    </div>
+  <section id="experience" class="home-section">
+    <h2>/ git log --experience</h2>
+    <p class="section-intro">Click a role for the full breakdown.</p>
     <div class="experience-grid">
       {
         experience.map((exp, index) => (
-          <div class="experience-card" style={`--stagger-index:${index}`}>
+          <div
+            class="experience-card"
+            style={`--stagger-index:${index}`}
+            data-detail-id={exp.id}
+            role="button"
+            tabindex="0"
+            aria-haspopup="dialog"
+          >
             <div class="experience-header">
               <h3 class="company-name">{exp.company}</h3>
               <span class="duration">
@@ -73,21 +95,61 @@ const featuredProjects = projects.filter((p) => p.featured);
             </div>
             <h4 class="job-title">{exp.title}</h4>
             <p class="job-description">{exp.description}</p>
-            <ul class="card-bullets">
-              {exp.bullets.map((bullet) => (
-                <li>{bullet}</li>
-              ))}
-            </ul>
             <div class="skills-container">
-              {exp.skills.map((skill) => (
+              {exp.skills.slice(0, 4).map((skill) => (
                 <span class="skill-tag">{skill}</span>
               ))}
             </div>
-            {exp.related && (
-              <a href={`/writing/${exp.related}`} class="card-related">
-                related writing →
-              </a>
-            )}
+            <span class="card-related">view details →</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="projects" class="home-section">
+    <h2>/ projects</h2>
+    <p class="section-intro">Click a project for the full breakdown and source link.</p>
+    <div class="projects-grid">
+      {
+        projects.map((project, index) => (
+          <div
+            class="project-card"
+            style={`--stagger-index:${index}`}
+            data-detail-id={project.id}
+            role="button"
+            tabindex="0"
+            aria-haspopup="dialog"
+          >
+            <div class="project-header">
+              <h3 class="project-name">{project.name}</h3>
+            </div>
+            <span class="duration">{project.duration}</span>
+            <p class="project-description">{project.summary}</p>
+            <div class="skills-container">
+              {project.tech.slice(0, 4).map((tech) => (
+                <span class="skill-tag">{tech}</span>
+              ))}
+            </div>
+            <span class="card-related">view details →</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section id="skills" class="home-section">
+    <h2>/ skills</h2>
+    <div class="skills-groups">
+      {
+        skillGroups.map((group, index) => (
+          <div class="skills-group" style={`--stagger-index:${index}`}>
+            <h4 class="skills-group-title">{group.category}</h4>
+            <div class="skills-container">
+              {group.items.map((item) => (
+                <span class="skill-tag">{item}</span>
+              ))}
+            </div>
           </div>
         ))
       }
@@ -95,34 +157,36 @@ const featuredProjects = projects.filter((p) => p.featured);
   </section>
 
   <section class="home-section">
-    <div class="section-head">
-      <h2>/ projects</h2>
-      <a href="/projects" class="section-link">all projects →</a>
-    </div>
-    <div class="projects-grid">
+    <h2>/ leadership</h2>
+    <div class="experience-grid">
       {
-        featuredProjects.map((project, index) => (
-          <div class="project-card" style={`--stagger-index:${index}`}>
-            <div class="project-header">
-              <h3 class="project-name">{project.name}</h3>
-              <a href={project.github} target="_blank" rel="noreferrer" class="project-github-link">
-                source ↗
-              </a>
+        leadership.map((role, index) => (
+          <div class="experience-card" style={`--stagger-index:${index}`}>
+            <div class="experience-header">
+              <h3 class="company-name">{role.organization}</h3>
+              <span class="duration">{role.duration}</span>
             </div>
-            <span class="duration">{project.duration}</span>
-            <p class="project-description">{project.summary}</p>
-            <div class="skills-container">
-              {project.tech.map((tech) => (
-                <span class="skill-tag">{tech}</span>
-              ))}
+            <h4 class="job-title">{role.title}</h4>
+            <p class="job-description">{role.description}</p>
+          </div>
+        ))
+      }
+      {
+        otherWork.map((work) => (
+          <div class="experience-card">
+            <div class="experience-header">
+              <h3 class="company-name">{work.company}</h3>
+              <span class="duration">{work.from} → {work.to}</span>
             </div>
+            <h4 class="job-title">{work.title}</h4>
+            <p class="job-description">{work.description}</p>
           </div>
         ))
       }
     </div>
   </section>
 
-  <section class="home-section contact-block">
+  <section id="contact" class="home-section contact-block">
     <h2>/ contact</h2>
     <p>
       I'm looking for summer 2027 software engineering internships in
@@ -134,4 +198,6 @@ const featuredProjects = projects.filter((p) => p.featured);
       <a href={site.linkedin} target="_blank" rel="noreferrer" class="button">LinkedIn</a>
     </div>
   </section>
+
+  <DetailModal />
 </Base>

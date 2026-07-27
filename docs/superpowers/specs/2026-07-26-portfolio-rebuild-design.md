@@ -92,3 +92,48 @@ CRT flicker on theme toggle, scroll progress, VS Code-style status bar.
 - The `position` essay would be strengthened by an actual demo backing it.
 - Rate limiting is called out as missing in the URL Shortener; worth fixing in
   that repo so the essay's "what I'd do differently" section can shrink.
+
+---
+
+## Addendum (same day): collapsed to a single page
+
+After the initial multi-page build (four MDX essays under `/writing`, plus
+`/projects` and `/about` routes), the user said the long-form-essay direction
+wasn't what they wanted: no in-depth project articles, and a preference for a
+single-page site where clicking a project or role pops up more detail (skills,
+languages, tools) rather than navigating to a separate page.
+
+Resolution: fold the strongest reasoning from two of the four essays
+(zero-trust key rotation, API failure design) into `insight` fields on the
+relevant experience/project entries, shown in a click-to-expand modal. Drop
+the other two essays (LLM security, secrets at rest) entirely; the LLM
+security position survives as two sentences in the About text instead of a
+dedicated page, since without a project backing it a whole essay overstated
+its weight.
+
+Changes from the original design:
+
+- Routes collapse to just `/`. `/writing`, `/writing/[slug]`, `/projects`,
+  `/about` are removed.
+- Content collection (`src/content/writing/`, `content.config.ts`), MDX
+  integration, `Provenance.astro`, and `WriteupCard.astro` are removed.
+- A new `DetailModal.astro` renders a single native `<dialog>`, populated from
+  a build-time JSON blob of `src/data/experience.ts` + `projects.ts`. Plain
+  script, no React island — `<dialog>` provides focus trapping and Esc-close
+  natively.
+- `CommandPalette` no longer searches essays; its nav commands scroll to
+  page sections instead of navigating to routes.
+- The `provenance` honesty-layer concept (production/domain/position) is
+  retired as a separate UI element. Its spirit survives informally: the
+  `insight` text is written to state general problem classes rather than
+  employer specifics, and the About text explicitly flags the LLM-security
+  paragraph as a position, not shipped work.
+
+## Unrelated fix during this session
+
+`react`/`react-dom` were pinned at `19.0.0` (Dec 2024), which caused every
+React island to throw "Invalid hook call... more than one copy of React" in
+`astro dev` (islands rendered as empty HTML, only appearing after client
+hydration). Clearing the Vite dependency cache did not fix it; upgrading to
+`react@^19.2`/`react-dom@^19.2` did. Worth knowing if a future dependency bump
+reintroduces this — check the React version pin first.

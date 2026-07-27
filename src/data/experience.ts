@@ -1,7 +1,9 @@
 // Technical roles only. Non-technical work lives in `otherWork` below so the
-// signal in the main list stays dense.
+// signal in the main list stays dense. `id` backs the click-to-expand modal;
+// `insight` is optional condensed reasoning shown in that modal.
 export const experience = [
   {
+    id: "argo-data",
     company: "Argo Data",
     title: "Software Engineer Intern",
     hash: "f4a7c2e",
@@ -16,10 +18,11 @@ export const experience = [
       "Built graceful degradation logic to maintain microservice operation during Registrar outages, validated by MSTest coverage for cryptographic round-trips and distributed edge cases.",
     ],
     skills: ["C#", ".NET 8", "Cryptography", "Distributed Systems", "MSTest"],
-    // Links the résumé bullet to the domain writeup it motivated.
-    related: "zero-trust-key-rotation",
+    insight:
+      "The interesting part of this work isn't the cryptography, it's the choreography around it. A key rotation can't be a swap — there's no instant where every participant agrees the switch happened, so it has to be a fade: a dual-key grace period where the old and new key are both briefly valid, ordered so verifiers accept the new key before signers start using it. And it has to keep working when the service that issues keys is unreachable — failing closed breaks availability, failing open is an auth bypass, so the real design work is a bounded degraded mode: serve from cache within a hard lifetime, alert loudly, narrow which operations stay allowed. (General description of the problem class — no employer-specific architecture.)",
   },
   {
+    id: "william-kerber",
     company: "William Kerber Software Studio",
     title: "Founder (Selected Team)",
     hash: "8d21b4a",
@@ -34,6 +37,7 @@ export const experience = [
     skills: ["Product Strategy", "UI/UX", "Figma"],
   },
   {
+    id: "ou-llc",
     company: "University of Oklahoma — Language Learning Center",
     title: "Student Programmer",
     hash: "3c9f01d",

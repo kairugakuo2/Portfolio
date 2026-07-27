@@ -3,7 +3,6 @@ import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import CommandPalette from "../components/CommandPalette.jsx";
-import { getCollection } from "astro:content";
 import { site } from "../data/site";
 
 interface Props {
@@ -13,14 +12,6 @@ interface Props {
 
 const { title, description = site.tagline } = Astro.props;
 const pageTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
-
-// Feed essay titles into the palette at build time so search works without
-// shipping the content collection to the client.
-const entries = await getCollection("writing", ({ data }) => !data.draft);
-const paletteWritings = entries.map((entry) => ({
-  title: entry.data.title,
-  slug: entry.id,
-}));
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -69,7 +60,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <Nav />
-    <CommandPalette client:idle writings={paletteWritings} />
+    <CommandPalette client:idle />
     <main class="page">
       <slot />
     </main>

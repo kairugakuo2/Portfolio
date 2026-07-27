@@ -1,13 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { toggleTheme } from "../lib/theme";
 
-/**
- * `writings` is passed in from Astro at build time so the palette can search
- * essays without shipping the content collection to the client.
- *
- * @param {{ writings?: { title: string, slug: string }[] }} props
- */
-const CommandPalette = ({ writings = [] }) => {
+const CommandPalette = () => {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState(0);
@@ -16,22 +10,17 @@ const CommandPalette = ({ writings = [] }) => {
   const previousFocusRef = useRef(null);
 
   const commands = useMemo(() => {
-    const go = (href) => () => { window.location.href = href; };
+    const scrollTo = (id) => () => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
     return [
-      { label: "Go to Home", group: "nav", run: go("/") },
-      { label: "Go to Writing", group: "nav", run: go("/writing") },
-      { label: "Go to Projects", group: "nav", run: go("/projects") },
-      { label: "Go to About", group: "nav", run: go("/about") },
-      ...writings.map((w) => ({
-        label: w.title,
-        group: "writing",
-        run: go(`/writing/${w.slug}`),
-      })),
-      { label: "Toggle theme", group: "action", run: () => toggleTheme() },
+      { label: "Go to About", run: scrollTo("about") },
+      { label: "Go to Experience", run: scrollTo("experience") },
+      { label: "Go to Projects", run: scrollTo("projects") },
+      { label: "Go to Skills", run: scrollTo("skills") },
+      { label: "Go to Contact", run: scrollTo("contact") },
+      { label: "Toggle theme", run: () => toggleTheme() },
       {
         label: "Copy email",
-        group: "action",
         keepOpen: true,
         run: () => {
           navigator.clipboard?.writeText("kairugakuo2@gmail.com").then(() => {
@@ -40,10 +29,10 @@ const CommandPalette = ({ writings = [] }) => {
           });
         },
       },
-      { label: "Open GitHub", group: "action", run: () => window.open("https://github.com/kairugakuo2", "_blank", "noreferrer") },
-      { label: "Open LinkedIn", group: "action", run: () => window.open("https://www.linkedin.com/in/gakuo/", "_blank", "noreferrer") },
+      { label: "Open GitHub", run: () => window.open("https://github.com/kairugakuo2", "_blank", "noreferrer") },
+      { label: "Open LinkedIn", run: () => window.open("https://www.linkedin.com/in/gakuo/", "_blank", "noreferrer") },
     ];
-  }, [writings]);
+  }, []);
 
   const filtered = useMemo(
     () => commands.filter((c) => c.label.toLowerCase().includes(query.toLowerCase())),
@@ -122,7 +111,7 @@ const CommandPalette = ({ writings = [] }) => {
             className="palette-input"
             type="text"
             value={query}
-            placeholder="type a command or search writing..."
+            placeholder="type a command..."
             onChange={(e) => { setQuery(e.target.value); setSelected(0); }}
             onKeyDown={onInputKeyDown}
           />
@@ -142,9 +131,6 @@ const CommandPalette = ({ writings = [] }) => {
                 <span>
                   {command.label === "Copy email" && copied ? "copied ✓" : command.label}
                 </span>
-                {command.group === "writing" && (
-                  <span className="palette-badge">essay</span>
-                )}
               </button>
             </li>
           ))}
