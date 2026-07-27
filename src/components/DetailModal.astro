@@ -1,0 +1,142 @@
+---
+// A single native <dialog>, populated on click from a JSON blob embedded at
+// build time. Avoids a React island for something this simple — no
+// hydration cost, and <dialog> gives focus trapping and Esc-to-close for free.
+import { experience } from "../data/experience";
+import { projects } from "../data/projects";
+
+type Detail = {
+  id: string;
+  kind: "experience" | "project";
+  title: string;
+  subtitle: string;
+  description: string;
+  bullets: string[];
+  skills: string[];
+  insight?: string;
+  github?: string;
+};
+
+const details: Detail[] = [
+  ...experience.map((e) => ({
+    id: e.id,
+    kind: "experience" as const,
+    title: e.company,
+    subtitle: `${e.title} · ${e.from} → ${e.to === "HEAD" ? "Present" : e.to}`,
+    description: e.description,
+    bullets: e.bullets,
+    skills: e.skills,
+    insight: e.insight,
+  })),
+  ...projects.map((p) => ({
+    id: p.id,
+    kind: "project" as const,
+    title: p.name,
+    subtitle: p.duration,
+    description: p.summary,
+    bullets: p.highlights,
+    skills: p.tech,
+    insight: p.insight,
+    github: p.github,
+  })),
+];
+---
+
+<dialog id="detail-modal" class="detail-modal">
+  <button type="button" class="detail-modal-close" data-modal-close aria-label="Close">✕</button>
+  <div class="detail-modal-body">
+    <h3 class="detail-modal-title" data-field="title"></h3>
+    <p class="detail-modal-subtitle" data-field="subtitle"></p>
+    <p class="detail-modal-description" data-field="description"></p>
+    <ul class="card-bullets" data-field="bullets"></ul>
+    <div class="skills-container" data-field="skills"></div>
+    <div class="detail-modal-insight" data-field="insight" hidden>
+      <p class="detail-modal-insight-label">further thinking</p>
+      <p data-field="insight-text"></p>
+    </div>
+    <a class="card-related" data-field="github" target="_blank" rel="noreferrer" hidden>source ↗</a>
+  </div>
+</dialog>
+
+<script type="application/json" id="detail-data" is:inline set:html={JSON.stringify(details)} />
+
+<script>
+  const data: Record<string, any> = {};
+  const raw = document.getElementById("detail-data")?.textContent;
+  if (raw) {
+    for (const entry of JSON.parse(raw)) data[entry.id] = entry;
+  }
+
+  const modal = document.getElementById("detail-modal") as HTMLDialogElement | null;
+
+  function populate(entry: any) {
+    if (!modal) return;
+    modal.querySelector('[data-field="title"]')!.textContent = entry.title;
+    modal.querySelector('[data-field="subtitle"]')!.textContent = entry.subtitle;
+    modal.querySelector('[data-field="description"]')!.textContent = entry.description;
+
+    const bullets = modal.querySelector('[data-field="bullets"]')!;
+    bullets.innerHTML = "";
+    for (const b of entry.bullets ?? []) {
+      const li = document.createElement("li");
+      li.textContent = b;
+      bullets.appendChild(li);
+    }
+
+    const skills = modal.querySelector('[data-field="skills"]')!;
+    skills.innerHTML = "";
+    for (const s of entry.skills ?? []) {
+      const span = document.createElement("span");
+      span.className = "skill-tag";
+      span.textContent = s;
+      skills.appendChild(span);
+    }
+
+    const insightBlock = modal.querySelector('[data-field="insight"]') as HTMLElement;
+    if (entry.insight) {
+      insightBlock.hidden = false;
+      modal.querySelector('[data-field="insight-text"]')!.textContent = entry.insight;
+    } else {
+      insightBlock.hidden = true;
+    }
+
+    const github = modal.querySelector('[data-field="github"]') as HTMLAnchorElement;
+    if (entry.github) {
+      github.hidden = false;
+      github.href = entry.github;
+    } else {
+      github.hidden = true;
+    }
+  }
+
+  function openFor(trigger: Element) {
+    if (!modal) return;
+    const id = trigger.getAttribute("data-detail-id")!;
+    const entry = data[id];
+    if (!entry) return;
+    populate(entry);
+    modal.showModal();
+  }
+
+  document.addEventListener("click", (e) => {
+    const trigger = (e.target as HTMLElement)?.closest("[data-detail-id]");
+    if (trigger) openFor(trigger);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    const trigger = (e.target as HTMLElement)?.closest("[data-detail-id]");
+    if (!trigger) return;
+    e.preventDefault();
+    openFor(trigger);
+  });
+
+  modal?.addEventListener("click", (e) => {
+    // Click on the ::backdrop lands directly on the <dialog> element.
+    if (e.target === modal) modal.close();
+  });
+
+  document.querySelectorAll("[data-modal-close]").forEach((btn) =>
+    btn.addEventListener("click", () => modal?.close())
+  );
+</script>
