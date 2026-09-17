@@ -1,0 +1,23 @@
+---
+import { Image } from 'astro:assets';
+import cutout from '../assets/me-cutout.png';
+const { treatment = 'halo', small = false } = Astro.props;
+---
+<div class:list={['portrait-art', `portrait-${treatment}`, { 'portrait-small': small }]}>
+  <div class="portrait-shape" aria-hidden="true"></div>
+  <Image class="portrait-echo" src={cutout} alt="" aria-hidden="true" widths={[320,640]} sizes="350px" />
+  <Image class="portrait-person" src={cutout} alt="Gakuo Kairu" widths={[320,640,960]} sizes="(max-width: 700px) 80vw, 400px" />
+  <span class="portrait-label" aria-hidden="true">GK / IN PERSON</span>
+</div>
+<style is:global>
+.portrait-art{position:relative;isolation:isolate;aspect-ratio:4/5;overflow:hidden;background:var(--color-bg-elevated);color:var(--color-accent)}
+.portrait-art .portrait-person,.portrait-art .portrait-echo{position:absolute;width:116%;max-width:none;height:100%;object-fit:contain;object-position:center bottom;left:-8%;bottom:0;border:0;border-radius:0;filter:none}
+.portrait-shape{position:absolute;z-index:-1}.portrait-echo{display:none!important}.portrait-label{position:absolute;left:15px;bottom:12px;font:8px var(--font-mono);letter-spacing:1px;background:var(--color-bg);color:var(--color-text);padding:5px 8px}
+.portrait-halo .portrait-shape{width:90%;aspect-ratio:1;left:5%;top:17%;border-radius:50%;background:var(--color-accent)}
+.portrait-offset .portrait-echo{display:block!important;filter:brightness(0);opacity:.2;transform:translate(15px,-10px)}
+.portrait-offset{background:var(--color-accent)}.portrait-offset .portrait-shape{width:50%;height:100%;left:0;top:0;background:var(--color-bg-elevated)}
+.portrait-frame{background:var(--color-bg)}.portrait-frame .portrait-shape{border:1px solid var(--color-accent);inset:20% 7% 6%;background:var(--color-bg-elevated)}
+.portrait-grid{background-color:var(--color-bg-elevated);background-image:linear-gradient(var(--color-border) 1px,transparent 1px),linear-gradient(90deg,var(--color-border) 1px,transparent 1px);background-size:28px 28px}
+.portrait-grid .portrait-shape{inset:7%;border:1px solid var(--color-accent);border-radius:50%}.portrait-grid .portrait-label{color:var(--color-accent)}
+.portrait-small .portrait-label{display:none}
+</style>

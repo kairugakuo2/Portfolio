@@ -2,7 +2,7 @@
 // A single native <dialog>, populated on click from a JSON blob embedded at
 // build time. Avoids a React island for something this simple — no
 // hydration cost, and <dialog> gives focus trapping and Esc-to-close for free.
-import { experience } from "../data/experience";
+import { experience, leadership } from "../data/experience";
 import { projects } from "../data/projects";
 
 type Detail = {
@@ -28,6 +28,17 @@ const details: Detail[] = [
     skills: e.skills,
     insight: e.insight,
   })),
+  ...leadership.map((l) => ({
+    id: l.id,
+    kind: "experience" as const,
+    title: l.organization,
+    subtitle: l.roles
+      .map((r) => `${r.title} · ${r.from} → ${r.to === "HEAD" ? "Present" : r.to}`)
+      .join("  /  "),
+    description: l.description,
+    bullets: l.bullets,
+    skills: l.skills,
+  })),
   ...projects.map((p) => ({
     id: p.id,
     kind: "project" as const,
@@ -42,10 +53,10 @@ const details: Detail[] = [
 ];
 ---
 
-<dialog id="detail-modal" class="detail-modal">
+<dialog id="detail-modal" class="detail-modal" aria-labelledby="detail-title">
   <button type="button" class="detail-modal-close" data-modal-close aria-label="Close">✕</button>
   <div class="detail-modal-body">
-    <h3 class="detail-modal-title" data-field="title"></h3>
+    <h3 id="detail-title" class="detail-modal-title" data-field="title"></h3>
     <p class="detail-modal-subtitle" data-field="subtitle"></p>
     <p class="detail-modal-description" data-field="description"></p>
     <ul class="card-bullets" data-field="bullets"></ul>

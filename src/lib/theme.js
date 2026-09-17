@@ -5,7 +5,7 @@
 // and lets any island subscribe, which keeps the toggle, the palette, and the
 // footer in sync without a shared tree.
 
-const STORAGE_KEY = "theme";
+const STORAGE_KEY = "portfolio-theme-v2";
 const listeners = new Set();
 
 export function getTheme() {
