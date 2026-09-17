@@ -5,5 +5,5 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://gakuokairu.com",
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap({ filter: (page) => !new URL(page).pathname.startsWith("/studio") })],
 });

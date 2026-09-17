@@ -11,11 +11,12 @@ export const experience = [
     to: "HEAD",
     location: "Richardson, TX",
     description:
-      "Engineering a production-critical, zero-trust identity subsystem in C# and .NET 8 that automates signing key bootstrapping, bridging legacy Windows/COM+ dependencies with modern containerized microservices.",
+      "Designed and shipped HMAC-SHA256 request signing across 8 .NET microservices for a distributed platform serving regulated financial clients.",
     bullets: [
-      "Implemented Windows-native cryptography via DPAPI to encrypt local key caches, supporting GLBA and HIPAA compliance through explicit in-memory hygiene, SecureString usage, and strict OS-level file ACLs.",
-      "Designed automated, zero-downtime key rotation with temporary dual-key grace periods, eliminating manual credential distribution.",
-      "Built graceful degradation logic to maintain microservice operation during Registrar outages, validated by MSTest coverage for cryptographic round-trips and distributed edge cases.",
+      "Shipped service-to-service HTTP authentication across 8 .NET microservices using HMAC-SHA256 request signing.",
+      "Strengthened bootstrap authorization with identity-bound, expiring tokens and fail-closed validation.",
+      "Engineered zero-downtime key rotation with adoption-delay and grace-period windows, converging services within 60 seconds.",
+      "Hardened storage with Windows DPAPI, restrictive NTFS ACLs, and scoped SecureString accessors; validated with 56 MSTest unit tests.",
     ],
     skills: ["C#", ".NET 8", "Cryptography", "Distributed Systems", "MSTest"],
     insight:
@@ -24,7 +25,7 @@ export const experience = [
   {
     id: "william-kerber",
     company: "William Kerber Software Studio",
-    title: "Founder (Selected Team)",
+    title: "Founding Team Member",
     hash: "8d21b4a",
     from: "FEB 2026",
     to: "HEAD",
@@ -32,7 +33,7 @@ export const experience = [
     description:
       "Selected as part of a 4-person team building a professional esports media aggregation platform.",
     bullets: [
-      "Led UI/UX design through Figma prototypes used in the investor pitch and MVP planning.",
+      "Own frontend architecture and interface design, translating Figma prototypes used in investor pitch materials into the MVP build.",
     ],
     skills: ["Product Strategy", "UI/UX", "Figma"],
   },
@@ -42,13 +43,14 @@ export const experience = [
     title: "Student Programmer",
     hash: "3c9f01d",
     from: "FEB 2025",
-    to: "HEAD",
+    to: "MAY 2026",
     location: "Norman, OK",
     description:
-      "Maintain department web and desktop applications used for placement testing and internal workflows.",
+      "Maintained and extended department web and desktop applications used for placement testing and internal workflows.",
     bullets: [
-      "Managed SQL database updates and generated operational reports supporting 3 departmental workflows.",
-      "Maintain and update department websites in HTML/CSS/JS for faculty and student use.",
+      "Maintained and extended departmental web applications in HTML/CSS/JavaScript serving faculty and students across multiple language programs.",
+      "Supported the web and desktop systems used for language placement testing, resolving defects and shipping feature requests for internal staff.",
+      "Automated SQL reporting and database updates across 3 departmental workflows, replacing recurring manual data pulls.",
     ],
     skills: ["SQL", "JavaScript", "Internal Tooling"],
   },
@@ -60,17 +62,30 @@ export const otherWork = [
     title: "Founder",
     from: "MAY 2024",
     to: "DEC 2024",
+    location: "Prosper, TX",
     description:
       "Founded and grew a mobile detailing business — 30+ jobs in 3 months at 98% satisfaction, 25+ clients through organic marketing, and a CRM-backed booking site that lifted conversion 20%.",
   },
 ];
 
+// `roles` is newest first; the first role is the current headline.
 export const leadership = [
   {
-    organization: "Google Developer Group (GDG) — University of Oklahoma",
-    title: "Connections Coordinator",
-    duration: "SEP 2025 - PRESENT",
+    id: "gdg-ou",
+    organization: "Google Developer Group — University of Oklahoma",
+    short: "GDG at OU",
+    roles: [
+      { title: "President", from: "SEP 2026", to: "HEAD" },
+      { title: "Connections Coordinator", from: "SEP 2025", to: "AUG 2026" },
+    ],
+    location: "Norman, OK",
     description:
-      "Planning and coordinating tech workshops and networking events for students. Leading outreach and partnership efforts to grow cross-organization engagement on campus.",
+      "Leading OU's Google Developer Group — technical workshops, networking events, and partnerships that connect students with the wider developer community.",
+    bullets: [
+      "Serve as chapter President, setting direction for workshops, events, and the officer team.",
+      "Led outreach and partnership efforts as Connections Coordinator to grow cross-organization engagement on campus.",
+      "Served as technical lead for a 5-person engineering team on StudySync, coordinating sprints, task ownership, and end-to-end delivery.",
+    ],
+    skills: ["Leadership", "Event Planning", "Partnerships", "Team Lead"],
   },
 ];

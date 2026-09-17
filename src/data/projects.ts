@@ -1,5 +1,34 @@
 export const projects = [
   {
+    id: "gedis",
+    name: "Gedis",
+    duration: "SEP 2026",
+    summary: "A Redis-compatible server built in Go — from raw TCP sockets to concurrent storage and durable command replay.",
+    highlights: [
+      "Implemented RESP as a recursive parser and serializer, with bounds validation on client-supplied length prefixes.",
+      "Handled concurrent clients with a goroutine per connection and RWMutex-guarded key-value and hash stores; compatible with redis-cli.",
+      "Built append-only-file persistence, background fsync, startup command replay, and channel-based shutdown signaling.",
+    ],
+    tech: ["Go", "TCP Sockets", "RESP", "Concurrency", "Persistence"],
+    github: "https://github.com/kairugakuo2/Gedis",
+    featured: true,
+  },
+  {
+    id: "morning-negotiation",
+    name: "Morning Negotiation",
+    duration: "AUG 2026 - PRESENT",
+    summary: "Two agents, one daily recommendation — a round-capped negotiation system built around live data and custom tools.",
+    highlights: [
+      "Built a tool-use agent loop from scratch, integrating local inference with LM Studio and the Anthropic API.",
+      "Developed an MCP client authenticating against Strava’s official connector for live data access.",
+      "Implemented a custom FastMCP server exposing domain tools, covering both sides of the protocol.",
+      "Designed a two-agent negotiation system that converges through a round-capped mediation loop.",
+    ],
+    tech: ["Python", "Anthropic API", "FastMCP", "LM Studio", "SQLite"],
+    github: "https://github.com/kairugakuo2/Morning-Negotiation",
+    featured: true,
+  },
+  {
     id: "url-shortener",
     name: "URL Shortener API",
     duration: "SEP 2025 - PRESENT",
@@ -26,7 +55,7 @@ export const projects = [
     highlights: [
       "Combinatorial generation over real course data, constrained by user-supplied filters.",
       "Responsive React + Tailwind UI supporting mobile and desktop.",
-      "State logic engineered for dynamic schedule rendering and real-time updates.",
+      "Client-side state logic for dynamic schedule rendering and real-time pairwise conflict detection.",
     ],
     tech: ["TypeScript", "React", "Next.js", "Tailwind CSS"],
     github: "https://github.com/kairugakuo2/sooner-planner",

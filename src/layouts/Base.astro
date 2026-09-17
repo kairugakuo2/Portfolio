@@ -4,6 +4,7 @@ import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import CommandPalette from "../components/CommandPalette.jsx";
 import { site } from "../data/site";
+import { palettes } from "../data/palettes";
 
 interface Props {
   title?: string;
@@ -36,7 +37,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;450;500;550;600;650;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     />
 
@@ -44,18 +45,30 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <script is:inline>
       (function () {
         try {
-          var stored = localStorage.getItem("theme");
+          var stored = localStorage.getItem("portfolio-theme-v2");
           var theme =
             stored === "light" || stored === "dark"
               ? stored
-              : window.matchMedia("(prefers-color-scheme: dark)").matches
-                ? "dark"
-                : "light";
+              : "light";
           document.documentElement.setAttribute("data-theme", theme);
         } catch (e) {
           document.documentElement.setAttribute("data-theme", "light");
         }
       })();
+    </script>
+
+    <script is:inline define:vars={{ palettes }}>
+      const previewParams = new URLSearchParams(location.search);
+      const previewPalette = palettes.find(p => p.id === previewParams.get('palette'));
+      if (previewPalette) {
+        const keys = ['bg','bg-elevated','text','text-muted','border','accent'];
+        keys.forEach((key,i) => document.documentElement.style.setProperty('--color-'+key, previewPalette.colors[i]));
+        document.documentElement.style.setProperty('--color-bg-subtle', previewPalette.colors[1]);
+        document.documentElement.style.colorScheme = previewPalette.dark ? 'dark' : 'light';
+        document.documentElement.dataset.palettePreview = 'true';
+      }
+      const previewPortrait = previewParams.get('portrait');
+      if (['halo','offset','frame','grid'].includes(previewPortrait)) document.documentElement.dataset.portraitPreview = previewPortrait;
     </script>
   </head>
   <body>

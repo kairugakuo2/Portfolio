@@ -15,7 +15,6 @@ const SunIcon = () => (
 
 const ThemeToggle = () => {
   const [theme, setThemeState] = useState("light");
-  const [flickering, setFlickering] = useState(false);
 
   // Read after mount: the inline head script sets the real theme before
   // hydration, so the server-rendered default is always "light".
@@ -25,10 +24,6 @@ const ThemeToggle = () => {
   }, []);
 
   const handleClick = () => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!reduceMotion) {
-      setFlickering(true);
-    }
     toggleTheme();
   };
 
@@ -42,13 +37,7 @@ const ThemeToggle = () => {
       >
         {theme === "light" ? <MoonIcon /> : <SunIcon />}
       </button>
-      {flickering && (
-        <div
-          className="crt-flicker"
-          aria-hidden="true"
-          onAnimationEnd={() => setFlickering(false)}
-        />
-      )}
+
     </>
   );
 };
